@@ -4,7 +4,6 @@ import EventsList from '../components/EventsList';
 
 function EventsPage() {
   const data = useLoaderData();
-  console.log(data);
 
   // const events = useLoaderData();
 
@@ -27,7 +26,10 @@ export async function loader() {
   console.log(response);
 
   if (!response.ok) {
-    return { isError: true, message: 'Could not fetch events.' };
+    // return { isError: true, message: 'Could not fetch events.' };
+    throw new Response(JSON.stringify({ message: 'Could not fetch events.' }), {
+      status: 500,
+    });
   } else {
     return response;
   }
