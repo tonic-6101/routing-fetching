@@ -3,11 +3,20 @@ import { useLoaderData } from 'react-router-dom';
 import EventsList from '../components/EventsList';
 
 function EventsPage() {
-  // const data = useLoaderData();
-  const events = useLoaderData();
+  const data = useLoaderData();
+  console.log(data);
 
-  // const events = data;
+  // const events = useLoaderData();
 
+  // if (events.isError) {
+  //   return <p>{events.message}</p>;
+  // }
+
+  if (data.isError) {
+    return <p>{data.message}</p>;
+  }
+
+  const events = data.events; // Cannot read properties of undefined (reading 'map')
   return <EventsList events={events} />;
 }
 
